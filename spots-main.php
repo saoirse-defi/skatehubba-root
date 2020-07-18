@@ -11,9 +11,8 @@
 
 <script>
 let map;
-let marker = [];
-let infowindow;
-let contentString;
+let markers = [];
+let contentString ;
 let spots = <?php getSpots() ?>;  //creates an nested array of spots, pulled from db
 
 
@@ -25,30 +24,56 @@ let spots = <?php getSpots() ?>;  //creates an nested array of spots, pulled fro
           zoom: 6.5
         });
 
-      
+        setMarkers(map, spots);
+    }
 
-       for(let i = 0; i < spots.length; i++){
-            marker.push(new google.maps.Marker({
-                position: new google.maps.LatLng(spots[i][7], spots[i][8]), //positions for lat lng in spots table sql
-                map: map
-            }))
+    
+
+    function setMarkers(map, spots){
+
+      for(let i = 0; i < spots.length; i++){
+
+            let spot = spots[i];
+            let latLng = new google.maps.LatLng(spot[7], spot[8]);
+            let contentString = `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`
+
+            let marker = new google.maps.Marker({
+                position: latLng, //positions for lat lng in spots table sql
+                map: map,
+                title: spot[5],
+                description: spot[4]
+            });
+
+            let infowindow = new google.maps.InfoWindow(
+                {content: contentString}
+            );
 
             
-            contentString =
-              `<a href="spot-details.php?ID=${spots[i][0]}">Click here for the details</a>`;
+            google.maps.event.addListener(marker, 'click', (function(marker, contentString){
+              return function(){
+                infowindow.setContent(contentString);
+                infowindow.open(map, marker);
+              }
+            })(marker, contentString));
+            
+            
+            /*contentString =
+              `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`; 
               
 
             infowindow = new google.maps.InfoWindow({
                               content: contentString,
-                              position: new google.maps.LatLng(spots[i][7], spots[i][8])  });
+                              position: new google.maps.LatLng(spot[7], spot[8])  });
 
-                              marker[i].addListener("click", function() {
-                                infowindow.open(map, marker[i]); });
+                              markers[i].addListener("click", function(){
+                                infowindow.open(map, markers[i]); });
 
           //code above needs work: currently only opening info window for the latest spot added
-          //progress report: info windows open on the right location but content is still of the last spot created
+          //progress report: info windows open on the right location but content is still of the last spot created */
        }
     } 
+
+    google.maps.event.addDomListener(window, 'load', initMap);
 
 </script>
 
