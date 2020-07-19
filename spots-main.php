@@ -35,7 +35,10 @@ let spots = <?php getSpots() ?>;  //creates an nested array of spots, pulled fro
 
             let spot = spots[i];
             let latLng = new google.maps.LatLng(spot[7], spot[8]);
-            let contentString = `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`
+            //let contentString = `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`
+            let contentString = '<div id="info-content">' + spot[5] + '<br>' + 
+                                'Notes: ' + spot[4] + '<br>' + 
+                                `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>` + '<br>' +'</div>';
 
             let marker = new google.maps.Marker({
                 position: latLng, //positions for lat lng in spots table sql
@@ -57,19 +60,6 @@ let spots = <?php getSpots() ?>;  //creates an nested array of spots, pulled fro
             })(marker, contentString));
             
             
-            /*contentString =
-              `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`; 
-              
-
-            infowindow = new google.maps.InfoWindow({
-                              content: contentString,
-                              position: new google.maps.LatLng(spot[7], spot[8])  });
-
-                              markers[i].addListener("click", function(){
-                                infowindow.open(map, markers[i]); });
-
-          //code above needs work: currently only opening info window for the latest spot added
-          //progress report: info windows open on the right location but content is still of the last spot created */
        }
     } 
 
