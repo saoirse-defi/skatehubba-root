@@ -31,7 +31,7 @@
     <div class="spot-group" id="spot-comments">
         <form action='spot-comments.php' method='POST'>
             <label>Name: </label>
-            <input type='text' name='name' class="spot-control" required><br>
+            <input type='text' name='uname' class="spot-control" required><br>
             <label>Email: </label>
             <input type="text" name="email" class="spot-control" required><br>
             <label>Add a photo here: </label><br>
@@ -40,6 +40,23 @@
             <input type="hidden" name="spot_id" id="spot_id" value="<?php echo $ID ?>">
             <button type="submit" class="btn btn-primary" name="comment-submit">Add comment to thread</button>
         </form>
+    </div>
+    <br>
+    <div class="spot-group" id="comment-thread">
+        <h3>Comment section:</h3><br>
+        <?php 
+            $result = "SELECT * FROM spot_comments WHERE spot_id = '$ID' ORDER BY time_added DESC";
+            $result_ = mysqli_query($connection, $result) or die("Bad query: $result");
+
+            if(mysqli_num_rows($result_) > 0){
+                while($_row = mysqli_fetch_assoc($result_)){
+                    echo "<div id='comment'><b><u>{$_row['uname']}</u></b><br>{$_row['time_added']}<br>{$_row['comment']}</div>";
+                    // ID will the separator for the spot-details page
+                }
+            }else{
+                echo "<h3>No spots to display</h3>";
+            }
+        ?>
     </div>
 </div>
 

@@ -1,16 +1,17 @@
 <?php 
     require('inc/config.php'); 
+    include_once('inc/functions.php');
 ?>
 
 <?php 
     if(filter_has_var(INPUT_POST, 'comment-submit')){
-        $name = htmlspecialchars($_POST['name']);
-        $spot_id = htmlspecialchars($_POST, 'spot_id');
+        $name = htmlspecialchars($_POST['uname']);
+        $spot_id = htmlspecialchars($_POST['spot_id']);
         $email = htmlspecialchars($_POST['email']);
         $time = date('Y-m-d H:i:s');
-        $comment = htmlspecialchars($_POST, 'comment');
+        $comment = htmlspecialchars($_POST['comment']);
 
-        if(isset($_FILES['comment-img'])){ // checking if file was submitted during form post
+        /* if(isset($_FILES['comment-img'])){ // checking if file was submitted during form post
             $file = $_FILES['comment-img'];
             $fileName = $_FILES['comment-img']['name'];
             $fileType = $_FILES['comment-img']['type'];
@@ -38,17 +39,19 @@
             }else{
                 echo "This file type is not allowed";
             }
-        }
+        } */
 
-        $query = "INSERT INTO spot_comments (name, spot_id, email, time, comment, comment_img) 
-                    VALUES ('$name', '$spot_id', '$email', '$time', '$comment', '$fileNameNew')";
+        $query = "INSERT INTO spot_comments (uname, spot_id, email, time_added, comment) 
+                    VALUES ('$name', '$spot_id', '$email', '$time', '$comment')";
     }
 
-    $result = mysqli_query($connection, $query) or die("Error code: ".mysqli_connect_errno());
+        mysqli_query($connection, $query) or die("Error code: ".mysqli_connect_errno());
 
-        echo 'Comment added to thread';
+        $alert = 'You have added a skate spot successfully';
+
+        echo "<script type='text/javascript'>alert($alert);</script>";
 
         mysqli_close($connection);
 
-        header('Location: marketplace.php?ad_creation=success');
+        header('Location: spots-main.php');
 ?>
