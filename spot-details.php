@@ -54,7 +54,7 @@
                     // ID will the separator for the spot-details page
                 }
             }else{
-                echo "<h3>No spots to display</h3>";
+                echo "<h4>No comments to display</h4>";
             }
         ?>
     </div>
