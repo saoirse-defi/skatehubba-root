@@ -55,7 +55,10 @@
         $result = mysqli_query($connection, $query) or die("Error code: ".mysqli_connect_errno());
 
         //Block 6
-        echo 'Spot added.';
+        $alert = 'You have added a skate spot successfully';
+
+        echo "<script type='text/javascript'>alert($alert);</script>";
+        //want to create an alert once spot is created
 
         //Block 7
         mysqli_close($connection);
