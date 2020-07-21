@@ -36,9 +36,8 @@ let spots = <?php getSpots() ?>;  //creates an nested array of spots, pulled fro
             let spot = spots[i];
             let latLng = new google.maps.LatLng(spot[7], spot[8]);
             //let contentString = `<a href="spot-details.php?ID=${spot[0]}">Click here for the details</a>`
-            let contentString = '<div id="info-content">' + spot[5] + '<br>' + 
-                                'Type: ' + spot[3] + '<br>' +
-                                'Notes: ' + spot[4] + '<br>' + 
+            let contentString = '<div id="info-content"><b><u>' + spot[5] + '</u></b><br>' + 
+                                'Type: ' + spot[3] + '<br>' + 
                                 `<a href="spot-details.php?ID=${spot[0]}">Click here for more details</a>` + '<br>' +'</div>';
 
             let marker = new google.maps.Marker({
