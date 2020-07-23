@@ -25,7 +25,7 @@
         <h2>Spot Name: <?php echo $row['nickname']?></h2> 
         <h4>Difficulty: <?php echo $row['difficulty']?></h4>
         <h4>Notes: <?php echo $row['comments']?></h4>
-        <img src='<?php echo 'images/spot_img/'.$row['img']?>' id='main-img' > 
+        <img src='<?php echo 'images/spot_img/'.$row['img']?>' alt='spot-img' id='main-img' > 
     </content></div>
     	<br>
     <div class="spot-group" id="spot-comments">

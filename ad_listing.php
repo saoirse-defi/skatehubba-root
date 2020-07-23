@@ -31,7 +31,7 @@
 </div>
 
 <div id='sidebar'>
-        <img src='<?php echo 'images/ad_img/'.$row['img']?>' id='main-ad-img' > 
+        <img src='<?php echo 'images/ad_img/'.$row['img']?>' alt='ad-img' id='main-ad-img' > 
 </div>
 
 <?php include('inc/footer.php'); ?>

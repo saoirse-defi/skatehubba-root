@@ -14,7 +14,7 @@
                         while($row = mysqli_fetch_assoc($_result)){
                             echo "
                             <a href='spot-details.php?ID={$row['spot_id']}'>
-                            <img src='images/spot_img/{$row['img']}'/>
+                            <img src='images/spot_img/{$row['img']}' alt='gallery-img'/>
                             </a>
                             ";
                         }

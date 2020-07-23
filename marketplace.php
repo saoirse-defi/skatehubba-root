@@ -15,7 +15,7 @@
                             echo "
                             <div class='container' id='ad-listing'>
                             <a href='ad_listing.php?ID={$row['ad_id']}'>
-                            <img src='images/ad_img/{$row['img']}' style='width:80%;'/>
+                            <img src='images/ad_img/{$row['img']}' alt='market-img' style='width:80%;'/>
                             </a>
                             <div id='sidebar'>
                             <h4>Asking Price: {$row['price']}</h4></br>
