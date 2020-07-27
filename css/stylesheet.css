@@ -82,7 +82,7 @@
       }
 
       body{
-        background-color:black;
+        background-color:#000000;
       }
 
       h1{
@@ -108,9 +108,10 @@
         color: whitesmoke;
       }
 
-      #container {
+      .container {
         text-align: center;
-        color:whitesmoke;
+        background-color:#000000;
+
       }
 
       .container-fluid{
