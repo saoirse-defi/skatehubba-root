@@ -1,5 +1,6 @@
 <?php
     date_default_timezone_set('Europe/Dublin');
+    session_start();
 ?>
 
 <!DOCTYPE html>

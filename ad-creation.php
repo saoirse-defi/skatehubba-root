@@ -5,7 +5,7 @@
 
 <div class="container" id="ad-form">
     <h2>Add item to marketplace:</h2>
-    <form method="POST" action="ad_creation.php" enctype='multipart/form-data'>
+    <form method="POST" action="ad-creation.inc.php" enctype='multipart/form-data'>
         <div class="form-group">
             <label>Item: </label> <br>
             <input type="text" name="title" class="spot-control" required/>

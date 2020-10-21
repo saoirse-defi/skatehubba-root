@@ -21,6 +21,15 @@
       <li class="nav-item">
         <a class="nav-link" href="spot-list.php">Skate Spot List</a>
       </li>
+      <?php 
+        if(isset($_SESSION["user_id"])){ //showing different content whether logged in or not (user_id may not be the variable)
+            echo "<li class='nav-item'><a class='nav-link' href='profile.php'>Profile</a></li>";
+            echo "<li class='nav-item'><a class='nav-link' href='logout.inc.php'>Logout</a></li>";
+        }else{
+            echo "<li class='nav-item'><a class='nav-link' href='signup.php'>Sign up</a></li>";
+            echo "<li class='nav-item'><a class='nav-link' href='login.php'>Login</a></li>";
+        }
+      ?>
     </ul>
   </div>
 </nav>
