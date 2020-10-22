@@ -1,2 +1,2 @@
 # skatehubba (portfolio)
-Aimed at skaters and longboarders, a site to track skate spots. A marketplace has been also added.
+Aimed at skaters and longboarders, social media to track skate spots and events. A marketplace has been also added.
