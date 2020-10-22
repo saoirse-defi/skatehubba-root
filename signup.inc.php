@@ -16,7 +16,7 @@ if(isset($_POST["submit"])){
 
      //taking the POST values from the form and running values through error functions
 
-     if(emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword) !== false){
+     if(emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword, $lvl) !== false){
         header("location: ../SKATEHUBBA/signup.php?error=emptyInput");
         exit();
      }

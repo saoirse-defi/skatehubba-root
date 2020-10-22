@@ -29,10 +29,10 @@ require_once('inc/config.php');
         }
     }
 
-    function emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword){
+    function emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword, $lvl){
         //Error function: Checking for empty fields at signup
         $result;
-        if(empty($fname) || empty($lname) || empty($email) || empty($uid) || empty($pword) || empty($_pword)){
+        if(empty($fname) || empty($lname) || empty($email) || empty($uid) || empty($pword) || empty($_pword) || empty($lvl)){
             $result = true;
         }else{
             $result = false;
