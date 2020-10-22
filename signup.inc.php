@@ -9,6 +9,8 @@ if(isset($_POST["submit"])){
      $pword = htmlspecialchars($_POST['pwd']);
      $_pword = htmlspecialchars($_POST['pwdrepeat']);
      $tstamp = date('Y-m-d H:i:s');
+     $lvl = htmlspecialchars($_POST['lvl']);
+     $bio = htmlspecialchars($_POST['bio']);
 
      require_once('inc/functions.php');
 
@@ -39,7 +41,7 @@ if(isset($_POST["submit"])){
         exit(); //password length function for future implementation
      } */
 
-     createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid);
+     createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid, $lvl, $bio);
 
 }
 else{

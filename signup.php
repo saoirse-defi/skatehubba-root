@@ -12,6 +12,14 @@
             <input type="text" name="uid" placeholder="Username..."><br>
             <input type="password" name="pwd" placeholder="Password..."><br>
             <input type="password" name="pwdrepeat" placeholder="Repeat Password..."><br>
+            <select name='lvl' id='lvl'>
+                        <option value='beginner'>Beginner</option>
+                        <option value='intermediate'>Intermediate</option>
+                        <option value='advanced'>Advanced</option>
+                        <option value='sensei'>Sensei</option>
+                        <option value='god'>God</option>
+            </select><br>
+            <input type='text' name='bio' id='bio' placeholder="Write something about yourself.."><br><br>
             <button type="submit" name="submit">Sign Up</button>
         </form>
     
