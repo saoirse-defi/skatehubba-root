@@ -126,7 +126,7 @@
                 animation: google.maps.Animation.DROP,
                 id: 'marker '+ markerId,
                 html: "<div class='container'>" + 
-                    "<form action='add-spot.php' method='POST' enctype='multipart/form-data'>" +
+                    "<form action='add-spot.inc.php' method='POST' enctype='multipart/form-data'>" +
                     "<div class='spot-group'>" +
                         "<label>Spot's name/nickname:</label><br>"+
                         "<input type='text' name='nickname' class='spot-control' required></div>"+

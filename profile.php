@@ -14,11 +14,24 @@
     }else{
         header("Location: spots-main.php?connect=failed");
     }
+
 ?>
 
 <div id='container'>
     <div class='spot-group' id='profile'>
         <h1><?php echo $_SESSION['username']?>'s profile</h1>
+
+        <div id='photo'>
+            <?php if($row['img'])
+                        echo "<img src='images/profile_img/".$row['img']."' >";
+                    else{
+                        echo "<form action='add-photo.inc.php' method='POST' enctype='multipart/form-data'>
+                                <input type='file' name='file'><br>
+                                <button type='submit' name='photoSubmit' class='btn btn-primary'>Submit a Profile Photo here!</button>
+                            </form>";
+                    }?>
+        </div>
+
         <h4>Name: <?php echo $row['first_name']?> <?php echo $row['last_name']?></h4>
         <h4>Skate style: <?php echo $row['style'] ?></h4>
         <h4>Skill level: <?php echo $row['lvl'] ?></h4>
