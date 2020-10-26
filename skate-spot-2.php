@@ -1,10 +1,14 @@
 <?php 
     require('inc/config.php');
+    include('inc/header.php');
+    //session_start();
+    /*if(isset($_SESSION['user_id'])){
+      $creator_id = $_SESSION['user_id'];
+    }else{
+      $creator_id = null;
+    }*/
 ?>
 
-<?php 
-    include('inc/header.php');
-?>
 <div class="container">
     <h1>Add A Skate Spot To The Map Below</h1> <br>
     <h3>Click on the spot location to add details</h3><br>

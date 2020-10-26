@@ -23,7 +23,7 @@
 
         <div id='photo'>
             <?php if($row['img'])
-                        echo "<img src='images/profile_img/".$row['img']."' >";
+                        echo "<img src='images/profile_img/".$row['img']."' >"; //if no profile photo, it requests one. Else pulls profile photo from db
                     else{
                         echo "<form action='add-photo.inc.php' method='POST' enctype='multipart/form-data'>
                                 <input type='file' name='file'><br>
@@ -37,6 +37,7 @@
         <h4>Skill level: <?php echo $row['lvl'] ?></h4>
         <h4>Member since: <?php echo $row['date_created'] ?></h4>
         <h4>Bio: <?php echo $row['bio'] ?></h4>
+        <h4>Spots created: <?php ?></h4>
     </div>
 </div>
 

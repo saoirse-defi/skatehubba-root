@@ -1,5 +1,7 @@
 <?php 
      require('inc/config.php');
+     require_once('inc/functions.php');
+     session_start();
 ?>
 
 <?php 
@@ -14,6 +16,12 @@
         $difficulty = htmlspecialchars($_POST['difficulty']);
         $comments = htmlspecialchars($_POST['comments']);
         $date = date("Y-m-d H:i:s"); //creating a timestamp for db record
+
+        if(isset($_SESSION['user_id'])){
+            $creator_id = $_SESSION['user_id'];
+          }else{
+            $creator_id = 0 ;
+          }
 
 
         if(isset($_FILES['file'])){ // checking if file was submitted during form post
@@ -47,14 +55,16 @@
             }
         }
 
-        $query = "INSERT INTO spots (nickname, spot_style, spot_type, difficulty, comments, date_created, lat, lng, img) 
-        VALUES('$nickname','$sstyle','$stype','$difficulty','$comments', '$date', '$lat', '$lng', '$fileNameNew')";
+        addSpot($connection, $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $creator_id);
 
+        }else{
+            header("location: ../SKATEHUBBA/skate-spot-2.php?error=spotCreationFailed");
+            exit();
         }
 
-        $result = mysqli_query($connection, $query) or die("Error code: ".mysqli_connect_errno());
+        
 
-        //Block 6
+       /* //Block 6
         $alert = 'You have added a skate spot successfully';
 
         echo "<script type='text/javascript'>alert($alert);</script>";
@@ -63,5 +73,5 @@
         //Block 7
         mysqli_close($connection);
 
-        header('Location: spots-main.php?creation=success'); //page redirect to home
+        header('Location: spots-main.php?creation=success'); //page redirect to home */
 ?>
