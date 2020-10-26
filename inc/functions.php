@@ -22,6 +22,26 @@ require_once('inc/config.php');
         exit();
     }
 
+    function addComment($connection, $name, $spot_id, $email, $time, $comment, $user_id){
+        
+        $query = "INSERT INTO spot_comments (uname, spot_id, email, time_added, comment, user_id) 
+        VALUES (?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_stmt_init($connection); //creating a prepared statement
+
+        if(!mysqli_stmt_prepare($stmt, $query)){
+            header("location: ../SKATEHUBBA/add-spot.php?error=statmentFailed");
+            exit();
+           }
+
+        mysqli_stmt_bind_param($stmt, 'ssssss', $name, $spot_id, $email, $time, $comment, $user_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+   
+        header("location: ../SKATEHUBBA/spots-main.php?error=none");
+        exit();
+    }
+
 
 
     function getSpots(){ //returns an array of the skate spots from the db 

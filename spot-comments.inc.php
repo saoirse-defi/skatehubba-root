@@ -1,6 +1,7 @@
 <?php 
     require('inc/config.php'); 
     include_once('inc/functions.php');
+    session_start();
 ?>
 
 <?php 
@@ -10,6 +11,12 @@
         $email = htmlspecialchars($_POST['email']);
         $time = date('Y-m-d H:i:s');
         $comment = htmlspecialchars($_POST['comment']);
+        
+        if(isset($_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+          }else{
+            $user_id = 0 ;
+          }
 
         /* if(isset($_FILES['comment-img'])){ // checking if file was submitted during form post
             $file = $_FILES['comment-img'];
@@ -41,17 +48,11 @@
             }
         } */
 
-        $query = "INSERT INTO spot_comments (uname, spot_id, email, time_added, comment) 
-                    VALUES ('$name', '$spot_id', '$email', '$time', '$comment')";
+        addComment($connection, $name, $spot_id, $email, $time, $comment, $user_id);
     }
 
-        mysqli_query($connection, $query) or die("Error code: ".mysqli_connect_errno());
-
-        $alert = 'You have added a skate spot successfully';
-
-        echo "<script type='text/javascript'>alert($alert);</script>";
-
-        mysqli_close($connection);
-
-        header('Location: spots-main.php');
+    else{
+        header("location: ../SKATEHUBBA/spot-list.php");
+        exit();
+    }
 ?>

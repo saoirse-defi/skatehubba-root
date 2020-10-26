@@ -1,6 +1,8 @@
 <?php 
     require('inc/config.php');
     include_once('inc/functions.php');
+    session_start();
+    $user_id = $_SESSION['user_id'];
 ?>
 
 <?php include('inc/header.php'); ?>
@@ -29,7 +31,7 @@
     </content></div>
     	<br>
     <div class="spot-group" id="spot-comments">
-        <form action='spot-comments.php' method='POST'>
+        <form action='spot-comments.inc.php' method='POST'>
             <label>Name: </label>
             <input type='text' name='uname' class="spot-control" required><br>
             <label>Email: </label>
