@@ -18,9 +18,9 @@
         $date = date("Y-m-d H:i:s"); //creating a timestamp for db record
 
         if(isset($_SESSION['user_id'])){
-            $creator_id = $_SESSION['user_id'];
+            $user_id = $_SESSION['user_id'];
           }else{
-            $creator_id = 0 ;
+            $user_id = 0 ;
           }
 
 
@@ -55,7 +55,7 @@
             }
         }
 
-        addSpot($connection, $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $creator_id);
+        addSpot($connection, $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $user_id);
 
         }else{
             header("location: ../SKATEHUBBA/skate-spot-2.php?error=spotCreationFailed");

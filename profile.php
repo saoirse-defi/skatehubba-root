@@ -36,8 +36,21 @@
         <h4>Skate style: <?php echo $row['style'] ?></h4>
         <h4>Skill level: <?php echo $row['lvl'] ?></h4>
         <h4>Member since: <?php echo $row['date_created'] ?></h4>
-        <h4>Bio: <?php echo $row['bio'] ?></h4>
-        <h4>Spots created: <?php ?></h4>
+        <h4>Bio: <?php echo $row['bio'] ?></h4><br>
+        
+        <h4>Spots created: </h4> 
+        <div id='content'><?php //pulls a list of spots created by the user
+        $_sql = "SELECT * FROM spots WHERE user_id='$ID'";
+        $_result = mysqli_query($connection, $_sql) or die("Bad query: $_sql");
+        
+        if(mysqli_num_rows($_result) > 0){
+            while($_row = mysqli_fetch_assoc($_result)){
+                echo "<a href='spot-details.php?ID={$_row['spot_id']}'>{$_row['nickname']}</a> <br>\n";
+            }
+        }else{
+            echo "<h3>No spots to display</h3>";
+        }
+        ?></div>
     </div>
 </div>
 

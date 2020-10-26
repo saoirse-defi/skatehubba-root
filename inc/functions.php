@@ -2,9 +2,9 @@
 
 require_once('inc/config.php');
 
-    function addSpot($connection, $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $creator_id){
+    function addSpot($connection, $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $user_id){
         
-        $query = "INSERT INTO spots (nickname, spot_style, spot_type, difficulty, comments, date_created, lat, lng, img, creator_id) 
+        $query = "INSERT INTO spots (nickname, spot_style, spot_type, difficulty, comments, date_created, lat, lng, img, user_id) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = mysqli_stmt_init($connection); //creating a prepared statement
@@ -14,7 +14,7 @@ require_once('inc/config.php');
             exit();
            }
 
-        mysqli_stmt_bind_param($stmt, 'ssssssssss', $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $creator_id);
+        mysqli_stmt_bind_param($stmt, 'ssssssssss', $nickname, $sstyle, $stype, $difficulty, $comments, $date, $lat, $lng, $fileNameNew, $user_id);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
    
