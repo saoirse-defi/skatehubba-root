@@ -6,13 +6,24 @@
     <section class="signup-form">
         <h2>Sign Up</h2>
         <form action="signup.inc.php" method="post">
-            <input type="text" name="fname" placeholder="First Name..."><br>
-            <input type="text" name="lname" placeholder="Last Name..."><br>
-            <input type="text" name="email" placeholder="Email..."><br>
-            <input type="text" name="uid" placeholder="Username..."><br>
+            <input type="text" name="fname" placeholder="First Name..." required><br>
+            <input type="text" name="lname" placeholder="Last Name..." required><br>
+            <input type="text" name="email" placeholder="Email..." required><br>
+            <input type="text" name="uid" placeholder="Username..." required><br>
             <input type="password" name="pwd" placeholder="Password..."><br>
             <input type="password" name="pwdrepeat" placeholder="Repeat Password..."><br>
+            What's your skating style?
+            <select name='style' id='style'>
+                        <option></option>
+                        <option value='street'>Street</option>
+                        <option value='vert'>Vert</option>
+                        <option value='downhill'>Downhill</option>
+                        <option value='freeride'>Freeride</option>
+                        <option value='dancing'>Dancing</option>
+            </select><br>
+            How would you describe your skating level?
             <select name='lvl' id='lvl'>
+                        <option></option>
                         <option value='beginner'>Beginner</option>
                         <option value='intermediate'>Intermediate</option>
                         <option value='advanced'>Advanced</option>
@@ -48,38 +59,6 @@
             echo "<p>You have signed up successfully.</p>";
         }
     }
-
-    //previous iteration's code
-    
-    /* if(filter_has_var(INPUT_POST, 'submit')){
-
-     $fname = htmlspecialchars($_POST['fname']);
-     $lname = htmlspecialchars($_POST['lname']);
-     $email = htmlspecialchars($_POST['email']);
-     $uid = htmlspecialchars($_POST['uid']);
-     $pword = htmlspecialchars($_POST['pwd']);
-     $_pword = htmlspecialchars($_POST['pwdrepeat']);
-
-     $qry = "INSERT INTO 
-     users (first_name, last_name, email, _password, username)
-     VALUES ('$fname', '$lname', '$email', '$pword', '$uid')";
-    }
-    
-    mysqli_connect($connection, $qry);
-
-    $query = "SELECT * FROM users WHERE first_name='$fname' AND last_name='$lname' AND email='$email'";
-    
-    $result = mysqli_connect($connection, $query);
-
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-            $userId = $row['id'];
-            $query = "INSERT INTO profile_image (user_id, status) VALUES ('$userId', 1)";
-            header("Location: index.php?signup=success");
-        }
-    } else{
-        echo "You have an error!";
-    } */
 ?>
     </section>
 

@@ -69,10 +69,10 @@ require_once('inc/config.php');
         }
     }
 
-    function emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword, $lvl){
+    function emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword){
         //Error function: Checking for empty fields at signup
         $result;
-        if(empty($fname) || empty($lname) || empty($email) || empty($uid) || empty($pword) || empty($_pword) || empty($lvl)){
+        if(empty($fname) || empty($lname) || empty($email) || empty($uid) || empty($pword) || empty($_pword)){
             $result = true;
         }else{
             $result = false;
@@ -139,9 +139,9 @@ require_once('inc/config.php');
        mysqli_stmt_close($stmt);
     }
 
-    function createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid, $lvl, $bio){
+    function createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid, $style, $lvl, $bio){
         //Creates user and inserts them into the db
-        $sql = "INSERT INTO users (first_name, last_name, email, _password, date_created, username, lvl, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO users (first_name, last_name, email, _password, date_created, username, style, lvl, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($connection); //creating a prepared statement
         
         if(!mysqli_stmt_prepare($stmt, $sql)){
@@ -151,7 +151,7 @@ require_once('inc/config.php');
  
         $hashedPwd = password_hash($pword, PASSWORD_DEFAULT); //securing passwords in the db
 
-        mysqli_stmt_bind_param($stmt, 'ssssssss', $fname, $lname, $email, $hashedPwd, $tstamp, $uid, $lvl, $bio);
+        mysqli_stmt_bind_param($stmt, 'sssssssss', $fname, $lname, $email, $hashedPwd, $tstamp, $uid, $style, $lvl, $bio);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 

@@ -5,7 +5,7 @@
 
 <?php
     include_once('inc/header.php');
-
+    //checks for session variable (user_id) in order to pull date from the users table
     if(isset($_SESSION['user_id'])){
         $ID = mysqli_real_escape_string($connection, $_SESSION['user_id']);
         $sql = "SELECT * FROM users WHERE user_id='$ID'";
@@ -32,14 +32,16 @@
                     }?>
         </div>
 
-        <h4>Name: <?php echo $row['first_name']?> <?php echo $row['last_name']?></h4>
-        <h4>Skate style: <?php echo $row['style'] ?></h4>
-        <h4>Skill level: <?php echo $row['lvl'] ?></h4>
-        <h4>Member since: <?php echo $row['date_created'] ?></h4>
-        <h4>Bio: <?php echo $row['bio'] ?></h4><br>
+        <div id='profile-details'>
+            <h4>Name: <?php echo $row['first_name']?> <?php echo $row['last_name']?></h4> 
+            <h4>Skate style: <?php if($row['style']){echo $row['style'];}else{echo 'No style selected';} ?></h4>
+            <h4>Skill level: <?php if($row['lvl']){echo $row['lvl'];}else{echo 'No skill level selected';} ?></h4>
+            <h4>Member since: <?php echo $row['date_created'] ?></h4>
+            <h4>Bio: <?php if($row['bio']){echo $row['bio'];}else{echo 'No Bio written';} ?></h4><br> 
+        </div>
 
-        <h4>Spots created: </h4> 
-        <div id='content'>
+        <div id='profile-spots'>
+            <h4>Spots created: </h4> 
             <?php //pulls a list of spots created by the user
                 $_sql = "SELECT * FROM spots WHERE user_id='$ID'";
                 $_result = mysqli_query($connection, $_sql) or die("Bad query: $_sql");

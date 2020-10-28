@@ -9,6 +9,7 @@ if(isset($_POST["submit"])){
      $pword = htmlspecialchars($_POST['pwd']);
      $_pword = htmlspecialchars($_POST['pwdrepeat']);
      $tstamp = date('Y-m-d H:i:s');
+     $style = htmlspecialchars($_POST['style']);
      $lvl = htmlspecialchars($_POST['lvl']);
      $bio = htmlspecialchars($_POST['bio']);
 
@@ -16,7 +17,7 @@ if(isset($_POST["submit"])){
 
      //taking the POST values from the form and running values through error functions
 
-     if(emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword, $lvl) !== false){
+     if(emptyInputSignup($fname, $lname, $email, $uid, $pword, $_pword) !== false){
         header("location: ../SKATEHUBBA/signup.php?error=emptyInput");
         exit();
      }
@@ -41,7 +42,7 @@ if(isset($_POST["submit"])){
         exit(); //password length function for future implementation
      } */
 
-     createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid, $lvl, $bio);
+     createUser($connection, $fname, $lname, $email, $pword, $tstamp, $uid, $style, $lvl, $bio);
 
 }
 else{
