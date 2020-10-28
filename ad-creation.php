@@ -1,6 +1,8 @@
 <?php 
     require('inc/config.php'); 
     include('inc/header.php');
+    include('inc/functions.php');
+    session_start();
 ?>
 
 <div class="container" id="ad-form">

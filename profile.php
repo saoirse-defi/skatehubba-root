@@ -54,6 +54,21 @@
                     echo "<h3>No spots to display</h3>";
                 }
         ?></div>
+
+        <div id='profile-ads'>
+            <h4>Ads placed: </h4> 
+            <?php //pulls a list of spots created by the user
+                $_sql = "SELECT * FROM ads WHERE user_id='$ID'";
+                $_result = mysqli_query($connection, $_sql) or die("Bad query: $_sql");
+                
+                if(mysqli_num_rows($_result) > 0){
+                    while($_row = mysqli_fetch_assoc($_result)){
+                        echo "<a href='spot-details.php?ID={$_row['spot_id']}'>{$_row['nickname']}</a> <br>\n";
+                    }
+                }else{
+                    echo "<h3>No spots to display</h3>";
+                }
+        ?></div>
     </div>
 </div>
 

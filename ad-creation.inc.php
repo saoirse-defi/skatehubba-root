@@ -1,5 +1,7 @@
 <?php 
     require('inc/config.php'); 
+    require('inc/functions.php');
+    session_start();
 ?>
 
 <?php
@@ -10,6 +12,12 @@
         $price = htmlspecialchars($_POST['price']);
         $county = htmlspecialchars($_POST['county']);
         $date = date('Y-m-d H:i:s');
+
+        if(isset($_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+          }else{
+            $user_id = 0 ;
+          }
 
         if(isset($_FILES['ad-photo'])){ // checking if file was submitted during form post
             $file = $_FILES['ad-photo'];
@@ -41,16 +49,13 @@
             }
         }
 
-        $_query = "INSERT INTO ads (title, descript, contact, price, county, time_created, img) 
-                    VALUES ('$title', '$desc', '$contact', '$price', '$county', '$date', '$fileNameNew')";
-    }
+        placeAd($connection, $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id);
+    
+        }else{
+            header('Location: marketplace.php?adCreation=failure');
+            exit();
+        }
 
-        $_result = mysqli_query($connection, $_query) or die("Error code: ".mysqli_connect_errno());
-
-        echo 'Ad created';
-
-        mysqli_close($connection);
-
-        header('Location: marketplace.php?ad_creation=success');
+        
 ?>
 
