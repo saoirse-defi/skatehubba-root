@@ -1,7 +1,7 @@
 <?php 
     require('inc/config.php');
     include_once('inc/functions.php');
-    $result = "SELECT * FROM ads ORDER BY time_created DESC";
+    $result = "SELECT * FROM ads ORDER BY ad_status";
     $_result = mysqli_query($connection, $result) or die("Bad query: $result");
     include('inc/header.php');
 ?>

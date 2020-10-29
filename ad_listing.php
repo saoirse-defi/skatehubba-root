@@ -10,7 +10,7 @@
         $_result = mysqli_query($connection, $sql) or die("Bad query: $sql");
         $row = mysqli_fetch_array($_result);
 
-        $cookie_name = "ad_status_id";
+        $cookie_name = "ad_status_id"; //creates cookie for the latest ad_id
         $cookie_value = $ID;
 
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
@@ -32,7 +32,7 @@
         <h4><u>Location:</u><br/> <?php echo $row['county']?></h4>
         <h4><u>Status:</u><br/> <?php echo $row['ad_status']?></h4>
 
-        <?php if($_SESSION['user_id'] == $row['user_id']){
+        <?php if($_SESSION['user_id'] == $row['user_id']){ //only shows 'mark as sold' button to the ad creator
                         echo "<form method='POST' action='ad_status.inc.php'><button type='submit' name='status'>Mark as sold!</button></form>";} //if no profile photo, it requests one. Else pulls profile photo from db?>
     </content>
 </div>
