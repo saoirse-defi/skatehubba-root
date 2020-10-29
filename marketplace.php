@@ -19,6 +19,7 @@
                             </a>
                             <div id='sidebar'>
                             <h4>Asking Price: {$row['price']}</h4></br>
+                            <h4>Status: {$row['ad_status']}</h4></br>
                             <h4>Location: {$row['county']}</h4>
                             </div></div>"; //trying to write the asking price within the photo link
                         }

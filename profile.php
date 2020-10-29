@@ -48,7 +48,7 @@
                 
                 if(mysqli_num_rows($_result) > 0){
                     while($_row = mysqli_fetch_assoc($_result)){
-                        echo "<a href='spot-details.php?ID={$_row['spot_id']}'>{$_row['nickname']}</a> <br>\n";
+                        echo "<a href='spot-details.php?ID={$_row['spot_id']}'>{$_row['date_created']} - {$_row['nickname']}</a> <br>\n";
                     }
                 }else{
                     echo "<h3>No spots to display</h3>";
@@ -63,10 +63,10 @@
                 
                 if(mysqli_num_rows($_result) > 0){
                     while($_row = mysqli_fetch_assoc($_result)){
-                        echo "<a href='spot-details.php?ID={$_row['spot_id']}'>{$_row['nickname']}</a> <br>\n";
+                        echo "<a href='ad_listing.php?ID={$_row['ad_id']}'>{$_row['time_created']} - {$_row['title']}</a> <br>\n";
                     }
                 }else{
-                    echo "<h3>No spots to display</h3>";
+                    echo "<h3>No ads have been placed yet.</h3>";
                 }
         ?></div>
     </div>

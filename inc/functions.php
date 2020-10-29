@@ -22,9 +22,9 @@ require_once('inc/config.php');
         exit();
     }
 
-    function placeAd($connection, $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id){
+    function placeAd($connection, $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id, $status){
         
-        $query = "INSERT INTO ads (title, price, county, descript, time_created, img, contact, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO ads (title, price, county, descript, time_created, img, contact, user_id, ad_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         $stmt = mysqli_stmt_init($connection); //creating a prepared statement
 
@@ -33,7 +33,7 @@ require_once('inc/config.php');
             exit();
            }
 
-        mysqli_stmt_bind_param($stmt, 'ssssssss', $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id);
+        mysqli_stmt_bind_param($stmt, 'sssssssss', $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id, $status);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
    

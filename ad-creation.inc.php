@@ -12,6 +12,7 @@
         $price = htmlspecialchars($_POST['price']);
         $county = htmlspecialchars($_POST['county']);
         $date = date('Y-m-d H:i:s');
+        $status = 'available';
 
         if(isset($_SESSION['user_id'])){
             $user_id = $_SESSION['user_id'];
@@ -49,7 +50,7 @@
             }
         }
 
-        placeAd($connection, $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id);
+        placeAd($connection, $title, $price, $county, $desc, $date, $fileNameNew, $contact, $user_id, $status);
     
         }else{
             header('Location: marketplace.php?adCreation=failure');
