@@ -6,17 +6,10 @@
 
 <?php 
     if(filter_has_var(INPUT_POST, 'comment-submit')){
-        $name = htmlspecialchars($_POST['uname']);
-        $spot_id = htmlspecialchars($_POST['spot_id']);
-        $email = htmlspecialchars($_POST['email']);
+        $spot_id = $_SESSION['spot_id'];
         $time = date('Y-m-d H:i:s');
         $comment = htmlspecialchars($_POST['comment']);
-        
-        if(isset($_SESSION['user_id'])){
-            $user_id = $_SESSION['user_id'];
-          }else{
-            $user_id = 0 ;
-          }
+        $user_id = $_SESSION['user_id'];
 
         /* if(isset($_FILES['comment-img'])){ // checking if file was submitted during form post
             $file = $_FILES['comment-img'];
@@ -48,7 +41,7 @@
             }
         } */
 
-        addComment($connection, $name, $spot_id, $email, $time, $comment, $user_id);
+        addComment($connection, $spot_id, $time, $comment, $user_id);
     }
 
     else{

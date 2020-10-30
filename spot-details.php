@@ -10,7 +10,7 @@
 <?php 
     if(isset($_GET['ID'])){
         $ID = mysqli_real_escape_string($connection, $_GET['ID']);
-
+        $_SESSION['spot_id'] = $ID;
         $sql = "SELECT * FROM spots WHERE spot_id='$ID'";
         $_result = mysqli_query($connection, $sql) or die("Bad query: $sql");
         $row = mysqli_fetch_array($_result);
@@ -29,30 +29,32 @@
         <h4>Notes: <?php echo $row['comments']?></h4>
         <img src='<?php echo 'images/spot_img/'.$row['img']?>' alt='spot-img' id='main-img' > 
     </content></div>
-    	<br>
-    <div class="spot-group" id="spot-comments">
-        <form action='spot-comments.inc.php' method='POST'>
-            <label>Name: </label>
-            <input type='text' name='uname' class="spot-control" required><br>
-            <label>Email: </label>
-            <input type="text" name="email" class="spot-control" required><br>
-            <label>Add a photo here: </label><br>
-            <input type="file" name="comment-img"><br>
-            <input type="text" name="comment" class="spot-control" placeholder="Leave a comment here" required><br>
-            <input type="hidden" name="spot_id" id="spot_id" value="<?php echo $ID ?>">
-            <button type="submit" class="btn btn-primary" name="comment-submit">Add comment to thread</button>
-        </form>
-    </div>
-    <br>
+        <br>
+
+    <h3>Comment section:</h3><br>
+    <?php 
+        if(isset($_SESSION['user_id'])){
+            echo "<div class='spot-group' id='spot-comments'>
+                    <form action='spot-comments.inc.php' method='POST'>
+                        <label>Add a photo here: </label><br>
+                        <input type='text' name='comment' class='spot-control' placeholder='Leave a comment here' required><br><br>
+                        <input type='hidden' name='spot_id' id='spot_id' value='<?php echo $ID ?>'>
+                        <button type='submit' class='btn btn-primary' name='comment-submit'>Add comment to thread</button>
+                    </form>
+                </div><br>";}
+        else{
+            echo "<h2>Please sign up in order to be able to commment.</h2";
+        }
+    ?>
+ 
     <div class="spot-group" id="comment-thread">
-        <h3>Comment section:</h3><br>
         <?php 
-            $result = "SELECT * FROM spot_comments WHERE spot_id = '$ID' ORDER BY time_added DESC";
+            $result = "SELECT spot_comments.time_added, spot_comments.comment, users.username from users JOIN spot_comments ON users.user_id = spot_comments.user_id";
             $result_ = mysqli_query($connection, $result) or die("Bad query: $result");
 
             if(mysqli_num_rows($result_) > 0){
                 while($_row = mysqli_fetch_assoc($result_)){
-                    echo "<div id='comment'><b><u>{$_row['uname']}</u></b><br>{$_row['time_added']}<br>{$_row['comment']}</div>";
+                    echo "<div id='comment'>{$_row['username']}</br>{$_row['time_added']}<br>{$_row['comment']}</div>";
                     // ID will the separator for the spot-details page
                 }
             }else{

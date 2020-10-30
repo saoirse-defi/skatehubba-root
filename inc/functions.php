@@ -41,10 +41,10 @@ require_once('inc/config.php');
         exit();
     }
 
-    function addComment($connection, $name, $spot_id, $email, $time, $comment, $user_id){
+    function addComment($connection, $spot_id, $time, $comment, $user_id){
         
-        $query = "INSERT INTO spot_comments (uname, spot_id, email, time_added, comment, user_id) 
-        VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO spot_comments (spot_id, time_added, comment, user_id) 
+        VALUES (?, ?, ?, ?)";
 
         $stmt = mysqli_stmt_init($connection); //creating a prepared statement
 
@@ -53,7 +53,7 @@ require_once('inc/config.php');
             exit();
            }
 
-        mysqli_stmt_bind_param($stmt, 'ssssss', $name, $spot_id, $email, $time, $comment, $user_id);
+        mysqli_stmt_bind_param($stmt, 'ssss', $spot_id, $time, $comment, $user_id);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
    
